@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsSync", "ContactsSync\ContactsSync.csproj", "{AF399114-231B-470E-B664-90BE63844E3B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsSync", "ContactsSync\ContactsSync.csproj", "{E703B75F-7AF0-4382-838A-A74FB17D3533}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AF399114-231B-470E-B664-90BE63844E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF399114-231B-470E-B664-90BE63844E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF399114-231B-470E-B664-90BE63844E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF399114-231B-470E-B664-90BE63844E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E703B75F-7AF0-4382-838A-A74FB17D3533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E703B75F-7AF0-4382-838A-A74FB17D3533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E703B75F-7AF0-4382-838A-A74FB17D3533}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E703B75F-7AF0-4382-838A-A74FB17D3533}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {73337770-1919-4343-AF59-B77BF50D97B3}
+		SolutionGuid = {B4EA04C5-4AF0-4641-997E-7170AFF317C2}
 	EndGlobalSection
 EndGlobal
