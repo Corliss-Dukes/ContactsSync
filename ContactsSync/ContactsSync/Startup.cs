@@ -8,6 +8,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.Identity.Web;
+using Microsoft.Identity.Web.TokenCacheProviders.InMemory;
+using Microsoft.Identity.Web.UI;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.Graph;
+using System.Net;
 
 namespace ContactsSync
 {
@@ -23,7 +31,27 @@ namespace ContactsSync
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            // Add Microsoft Identity Platform sign-in
+            services.AddSignIn(Configuration);
+
+            // Add ability to call web API (Graph)
+            // and get access tokens
+            services.AddWebAppCallsProtectedWebApi(Configuration,
+                GraphConstants.Scopes)
+                // Use in-memory token cache
+                // See https://github.com/AzureAD/microsoft-identity-web/wiki/token-cache-serialization
+                .AddInMemoryTokenCaches();
+
+            // Require authentication
+            services.AddControllersWithViews(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            })
+            // Add the Microsoft Identity UI pages for signin/out
+            .AddMicrosoftIdentityUI();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +71,8 @@ namespace ContactsSync
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
