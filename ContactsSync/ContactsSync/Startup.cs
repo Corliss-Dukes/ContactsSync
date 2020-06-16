@@ -16,6 +16,8 @@ using Microsoft.Identity.Web.UI;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.Graph;
 using System.Net;
+using ContactsSync.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactsSync
 {
@@ -136,6 +138,9 @@ namespace ContactsSync
             })
             // Add the Microsoft Identity UI pages for signin/out
             .AddMicrosoftIdentityUI();
+
+            services.AddDbContext<patientInfoContext>(options =>
+           options.UseSqlServer(Configuration["ConnectionStrings:CrystalDB"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

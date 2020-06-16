@@ -16,16 +16,17 @@ namespace ContactsSync.Controllers
     public class ContactsController : Controller
     {
         private readonly ITokenAcquisition _tokenAcquisition;
-        private readonly ILogger<HomeController> _logger;
+        private readonly patientInfoContext _context;
 
         public ContactsController(
             ITokenAcquisition tokenAcquisition,
-            ILogger<HomeController> logger)
+            patientInfoContext context)
+            
         {
             _tokenAcquisition = tokenAcquisition;
-            _logger = logger;
+            _context = context;
         }
-        public async Task<IActionResult> Sync()
+        public async Task<IActionResult> Initialize()
         {
             var graphClient = GraphServiceClientFactory
                 .GetAuthenticatedGraphClient(async () =>
@@ -41,10 +42,9 @@ namespace ContactsSync.Controllers
             {
                 try
                 {
-                    //make a new MS Contact Object using the patient data in sql
-                    PatientContact pc = new PatientContact();
-                    Contact contact = pc.NewContact(patient);
-                    //send the Contact Object to MS Contacts
+                    //make a new MS Contact Object using the patient data from sql query
+                    Contact contact = new PatientContact().NewContact(patient);
+                    //send the Contact Object to Microsoft People
                     await graphClient.Me.Contacts
                         .Request()
                         .AddAsync(contact);
@@ -61,10 +61,9 @@ namespace ContactsSync.Controllers
         }
 
         //IMPORT list of contacts from SQL and turn into JsonPerson Objects
-        private static async Task<ActionResult<IEnumerable<Patients>>> GetDataFromDB()
+        private async Task<ActionResult<IEnumerable<Patients>>> GetDataFromDB()
         {
-            using patientInfoContext db = new patientInfoContext();
-            return await db.Patients.Select(p => p).ToListAsync();
+            return await _context.Patients.Select(p => p).ToListAsync();
         }
     }
 }

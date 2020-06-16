@@ -50,6 +50,6 @@ namespace ContactsSync.Models
                 };
             };
             return newContact;
-        }        
+        }
     }
 }

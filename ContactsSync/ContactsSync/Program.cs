@@ -21,6 +21,6 @@ namespace ContactsSync
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                });        
     }
 }

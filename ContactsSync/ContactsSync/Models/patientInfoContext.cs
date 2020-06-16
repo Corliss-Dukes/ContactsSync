@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,9 +8,9 @@ namespace ContactsSync.Models
 {
     public partial class patientInfoContext : DbContext
     {
-        public patientInfoContext()
-        {
-        }
+        //public patientInfoContext()
+        //{
+        //}
 
         public patientInfoContext(DbContextOptions<patientInfoContext> options)
             : base(options)
@@ -17,90 +19,48 @@ namespace ContactsSync.Models
 
         public virtual DbSet<Patients> Patients { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=10.10.10.33\\CORLISSDEV;Database=patientInfo;User Id=corlissapi;Password=publicpassword;");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["CrystalDB"].ConnectionString);
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Patients>(entity =>
             {
-                entity.ToTable("patients");
+                entity.Property(e => e.Address1).IsUnicode(false);
 
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Address2).IsUnicode(false);
 
-                entity.Property(e => e.Address1)
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.CellPhone).IsUnicode(false);
 
-                entity.Property(e => e.Address2)
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.City).IsUnicode(false);
 
-                entity.Property(e => e.CellPhone)
-                    .HasColumnName("Cell_Phone")
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.Dob).IsUnicode(false);
 
-                entity.Property(e => e.City)
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.Email).IsUnicode(false);
 
-                entity.Property(e => e.Dob)
-                    .HasColumnName("DOB")
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.FirstName).IsUnicode(false);
 
-                entity.Property(e => e.Email)
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.FullName).IsUnicode(false);
 
-                entity.Property(e => e.FirstName)
-                    .HasColumnName("First_Name")
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.HomePhone).IsUnicode(false);
 
-                entity.Property(e => e.FullName)
-                    .HasColumnName("Full_Name")
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.LastName).IsUnicode(false);
 
-                entity.Property(e => e.HomePhone)
-                    .HasColumnName("Home_Phone")
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.MiddleName).IsUnicode(false);
 
-                entity.Property(e => e.LastName)
-                    .HasColumnName("Last_Name")
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.Nickname).IsUnicode(false);
 
-                entity.Property(e => e.MiddleName)
-                    .HasColumnName("Middle_Name")
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.State).IsUnicode(false);
 
-                entity.Property(e => e.Nickname)
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.WorkPhone).IsUnicode(false);
 
-                entity.Property(e => e.State)
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.WorkPhone)
-                    .HasColumnName("Work_Phone")
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Zipcode)
-                    .HasMaxLength(128)
-                    .IsUnicode(false);
+                entity.Property(e => e.Zipcode).IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
