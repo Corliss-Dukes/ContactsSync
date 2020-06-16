@@ -8,24 +8,12 @@ namespace ContactsSync.Models
 {
     public partial class patientInfoContext : DbContext
     {
-        //public patientInfoContext()
-        //{
-        //}
-
         public patientInfoContext(DbContextOptions<patientInfoContext> options)
             : base(options)
         {
         }
 
         public virtual DbSet<Patients> Patients { get; set; }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["CrystalDB"].ConnectionString);
-        //    }
-        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -8,9 +8,9 @@ namespace ContactsSync.Controllers
 {
     public class NightlySyncController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //TODO: Check DB for recent changes, return a list of patients 
+        //TODO: if list is not empty, create list of MS contact objects from list
+        //TODO: Loop through the list and first delete contact, then add new (updated) contact
+        // ( where SQL id == FileAs )
     }
 }

@@ -13,6 +13,7 @@ namespace ContactsSync.Models
         {
             var newContact = new Contact()
             {
+                FileAs = patient.Id.ToString(),
                 GivenName = patient.FirstName,
                 Surname = patient.LastName,
                 MiddleName = patient.MiddleName,
