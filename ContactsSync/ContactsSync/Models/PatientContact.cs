@@ -37,6 +37,11 @@ namespace ContactsSync.Models
                 Birthday = new DateTimeOffset(DateTime.Parse(patient.Dob))
 
             };
+            bool formated = formatEmail(patient.Email);
+            if (formated)
+            {
+            bool valid = validateExtension(patient.Email);
+            }
             if (patient.Email != null)
             {
                 //TODO: Include some regex to validate format and domain extension
@@ -51,6 +56,27 @@ namespace ContactsSync.Models
                 };
             };
             return newContact;
+        }
+        //******************************** HELPER FUNCTIONS ******************
+        private static bool formatEmail(string email)
+        {
+            //TODO: check for proper email format            
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }            
+        }
+
+        private static bool validateExtension(string email)
+        {
+            // domain list can be found at https://data.iana.org/TLD/tlds-alpha-by-domain.txt 
+
+            return true;
         }
     }
 }
