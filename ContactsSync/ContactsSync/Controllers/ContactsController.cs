@@ -28,6 +28,7 @@ namespace ContactsSync.Controllers
         }
         public async Task<IActionResult> Initialize()
         {
+            //initialize the MS Graph API client to connect to Graph
             var graphClient = GraphServiceClientFactory
                 .GetAuthenticatedGraphClient(async () =>
                 {
@@ -36,9 +37,9 @@ namespace ContactsSync.Controllers
                 });
 
             //Get Data - see function below
-            var sql = await GetDataFromDB();
+            IEnumerable<Patients> sql = await GetDataFromDB();
 
-            foreach (Patients patient in sql.Value)
+            foreach (Patients patient in sql)
             {
                 try
                 {
@@ -61,7 +62,7 @@ namespace ContactsSync.Controllers
         }
 
         //IMPORT list of contacts from SQL and turn into JsonPerson Objects
-        private async Task<ActionResult<IEnumerable<Patients>>> GetDataFromDB()
+        private async Task<IEnumerable<Patients>> GetDataFromDB()
         {
             return await _context.Patients.Select(p => p).ToListAsync();
         }
