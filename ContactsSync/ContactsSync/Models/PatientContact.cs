@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using ContactsSync.Models;
 using Microsoft.Graph;
 
 namespace ContactsSync.Models
@@ -37,30 +35,18 @@ namespace ContactsSync.Models
                 Birthday = new DateTimeOffset(DateTime.Parse(patient.Dob))
 
             };
-            bool formated = formatEmail(patient.Email);
-            if (formated)
-            {
-            bool valid = validateExtension(patient.Email);
-            }
             if (patient.Email != null)
             {
-                //TODO: Include some regex to validate format and domain extension
-                newContact.EmailAddresses = new List<EmailAddress>()
-                {
-                    new EmailAddress
-                    {
-                        Address = patient.Email,
-                        Name = patient.FullName
-                    }
-
-                };
+                //DONE: validate format and domain extension of email
+                bool f = isFormatted(patient.Email) ? true : false;
+                bool v = f ? isValidExtension(patient.Email) : false;
+                newContact.EmailAddresses = v ? newEmail(patient.Email, patient.FullName) : null;        
             };
             return newContact;
         }
-        //******************************** HELPER FUNCTIONS ******************
-        private static bool formatEmail(string email)
+        //******************************** HELPER METHODS ******************
+        private static bool isFormatted(string email)
         {
-            //TODO: check for proper email format            
             try
             {
                 var addr = new System.Net.Mail.MailAddress(email);
@@ -72,11 +58,35 @@ namespace ContactsSync.Models
             }            
         }
 
-        private static bool validateExtension(string email)
+        private static bool isValidExtension(string email)
         {
             // domain list can be found at https://data.iana.org/TLD/tlds-alpha-by-domain.txt 
+            string[] domexts = System.IO.File.ReadAllLines(@"C:\Users\Kcils\Desktop\ContactsSync\ContactsSync\ContactsSync\wwwroot\validate.txt"); //get relative path
+            string ext = getExtension(email);            
+            return domexts.Contains(ext) ? true : false;
+        }        
 
-            return true;
+        private static string getExtension(string email)
+        {
+            char splitter = '.';
+            string[] temp = email.Split(splitter, StringSplitOptions.None);
+            return temp[^1].ToString().ToUpper();
+            //temp.Length - 1
+        }
+
+        private static List<EmailAddress> newEmail(string email, string name)
+        {
+            List<EmailAddress> temp = new List<EmailAddress>()
+            {
+                new EmailAddress
+                {
+                    Address = email,
+                    Name = name
+                }
+
+            };
+            return temp;
+
         }
     }
 }

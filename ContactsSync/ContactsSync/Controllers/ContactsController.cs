@@ -66,5 +66,11 @@ namespace ContactsSync.Controllers
         {
             return await _context.Patients.Select(p => p).ToListAsync();
         }
+
+        //IMPORT list of contacts from CSV file
+        //private async Task<IEnumerable<Patients>> GetDataFromFile()
+        //{
+            
+        //}
     }
 }
