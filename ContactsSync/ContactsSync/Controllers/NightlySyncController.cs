@@ -45,7 +45,7 @@ namespace ContactsSync.Controllers
             DateTime dt = DateTime.Today.AddDays(-1);
             //TODO: Make sure CrystalDB has a field for recent edits
             //return await _context.Patients.Where(p => p.lastEdit > dt).ToListAsync();
-            return await _context.Patients.Where(p => p.Id > 2).ToListAsync(); //this is just filler for testing
+            return await _context.Patients.Select(p => p).ToListAsync(); //this is just filler for testing
         }
 
         private static List<Contact> ConvertToContact( IEnumerable<Patients> patients)

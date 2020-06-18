@@ -11,7 +11,7 @@ namespace ContactsSync.Models
         {
             var newContact = new Contact()
             {
-                FileAs = patient.Id.ToString(),
+                //FileAs = patient.Id.ToString(),
                 GivenName = patient.FirstName,
                 Surname = patient.LastName,
                 MiddleName = patient.MiddleName,
@@ -28,11 +28,11 @@ namespace ContactsSync.Models
                 HomeAddress = new PhysicalAddress()
                 {
                     City = patient.City,
-                    PostalCode = patient.Zipcode,
+                    PostalCode = patient.Zipcode.ToString(),
                     State = patient.State,
                     Street = patient.Address1
                 },
-                Birthday = new DateTimeOffset(DateTime.Parse(patient.Dob))
+                Birthday = new DateTimeOffset(DateTime.Parse(patient.Dob.ToString()))
 
             };
             if (patient.Email != null)
@@ -40,7 +40,7 @@ namespace ContactsSync.Models
                 //DONE: validate format and domain extension of email
                 bool f = isFormatted(patient.Email) ? true : false;
                 bool v = f ? isValidExtension(patient.Email) : false;
-                newContact.EmailAddresses = v ? newEmail(patient.Email, patient.FullName) : null;        
+                newContact.EmailAddresses = v ? newEmail(patient.Email, patient.FullName) : null;
             };
             return newContact;
         }
@@ -55,16 +55,16 @@ namespace ContactsSync.Models
             catch
             {
                 return false;
-            }            
+            }
         }
 
         private static bool isValidExtension(string email)
         {
             // domain list can be found at https://data.iana.org/TLD/tlds-alpha-by-domain.txt 
             string[] domexts = System.IO.File.ReadAllLines(@"C:\Users\Kcils\Desktop\ContactsSync\ContactsSync\ContactsSync\wwwroot\validate.txt"); //get relative path
-            string ext = getExtension(email);            
+            string ext = getExtension(email);
             return domexts.Contains(ext) ? true : false;
-        }        
+        }
 
         private static string getExtension(string email)
         {

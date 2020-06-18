@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace ContactsSync.Controllers
 {
@@ -21,7 +22,7 @@ namespace ContactsSync.Controllers
         public ContactsController(
             ITokenAcquisition tokenAcquisition,
             patientInfoContext context)
-            
+
         {
             _tokenAcquisition = tokenAcquisition;
             _context = context;
@@ -67,10 +68,5 @@ namespace ContactsSync.Controllers
             return await _context.Patients.Select(p => p).ToListAsync();
         }
 
-        //IMPORT list of contacts from CSV file
-        //private async Task<IEnumerable<Patients>> GetDataFromFile()
-        //{
-            
-        //}
     }
 }

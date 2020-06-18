@@ -1,53 +1,229 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContactsSync.Models
 {
-    [Table("patients")]
     public partial class Patients
     {
-        [Key]
-        [Column("ID")]
-        public int Id { get; set; }
-        [Column("First_Name")]
-        [StringLength(128)]
         public string FirstName { get; set; }
-        [Column("Middle_Name")]
-        [StringLength(128)]
         public string MiddleName { get; set; }
-        [Column("Last_Name")]
-        [StringLength(128)]
         public string LastName { get; set; }
-        [StringLength(128)]
         public string Nickname { get; set; }
-        [Column("Full_Name")]
-        [StringLength(128)]
         public string FullName { get; set; }
-        [StringLength(128)]
         public string Address1 { get; set; }
-        [StringLength(128)]
         public string Address2 { get; set; }
-        [StringLength(128)]
         public string City { get; set; }
-        [StringLength(128)]
         public string State { get; set; }
-        [StringLength(128)]
-        public string Zipcode { get; set; }
-        [Column("DOB")]
-        [StringLength(128)]
-        public string Dob { get; set; }
-        [Column("Home_Phone")]
-        [StringLength(128)]
+        public int Zipcode { get; set; }
+        public DateTime Dob { get; set; }
+        public int Age { get; set; }
         public string HomePhone { get; set; }
-        [Column("Work_Phone")]
-        [StringLength(128)]
         public string WorkPhone { get; set; }
-        [Column("Cell_Phone")]
-        [StringLength(128)]
         public string CellPhone { get; set; }
-        [StringLength(128)]
+        public string OtherPhone { get; set; }
         public string Email { get; set; }
+        public string PreferredContact { get; set; }
+        public string PreferredContactType { get; set; }
+        public string Occupation { get; set; }
+        public string EmployerSchool { get; set; }
+        public string Misc1Guardian { get; set; }
+        public string PrimaryDoctor { get; set; }
+        public string Referral { get; set; }
+        public string Insurance1 { get; set; }
+        public string Insurance2 { get; set; }
+        public string Insurance3 { get; set; }
+        public string InsuranceNotes { get; set; }
+        public string AlertComments { get; set; }
+        public string ProRefAddress { get; set; }
+        public string ProRefPhone { get; set; }
+        public string ProRefFax { get; set; }
+        public string ProRefEmail { get; set; }
+        public string ProRefNpi { get; set; }
+        public string ProRefNotes { get; set; }
+        public string Title { get; set; }
+        public string Suffix { get; set; }
+        public string Ssn { get; set; }
+        public string Misc2 { get; set; }
+        public string MaritalStatus { get; set; }
+        public string SendStatements { get; set; }
+        public string Newsletter { get; set; }
+        public DateTime? SigOnFile { get; set; }
+        public DateTime? HipaaSigOnFile { get; set; }
+        public bool CourtesyDisc { get; set; }
+        public string ApplyFinanceCharge { get; set; }
+        public bool PatientBalance { get; set; }
+        public bool InsuranceBalance { get; set; }
+        public bool TotalBalance { get; set; }
+        public string BillingName { get; set; }
+        public int AccountId { get; set; }
+        public string Ins1Id { get; set; }
+        public string Ins1PolicyGroup { get; set; }
+        public int Ins1CoPay { get; set; }
+        public string Ins1NotPrimary { get; set; }
+        public string Ins1PrimaryName { get; set; }
+        public string Ins1Address { get; set; }
+        public string Ins1City { get; set; }
+        public string Ins1State { get; set; }
+        public int Ins1Zipcode { get; set; }
+        public string Ins1Phone { get; set; }
+        public DateTime Ins1Birthday { get; set; }
+        public string Ins1Sex { get; set; }
+        public string Ins1Employer { get; set; }
+        public string Ins1Relationship { get; set; }
+        public string Ins1SignatureDate { get; set; }
+        public string Ins1Ssn { get; set; }
+        public string Ins2Id { get; set; }
+        public int? Ins2PolicyGroup { get; set; }
+        public bool? Ins2CoPay { get; set; }
+        public string Ins2NotPrimary { get; set; }
+        public string Ins2PrimaryName { get; set; }
+        public string Ins2Address { get; set; }
+        public string Ins2City { get; set; }
+        public string Ins2State { get; set; }
+        public int Ins2Zipcode { get; set; }
+        public string Ins2Phone { get; set; }
+        public DateTime Ins2Birthday { get; set; }
+        public string Ins2Sex { get; set; }
+        public string Ins2Employer { get; set; }
+        public string Ins2Relationship { get; set; }
+        public string Ins2SignatureDate { get; set; }
+        public string Ins2Ssn { get; set; }
+        public int? Ins3Id { get; set; }
+        public decimal? Ins3PolicyGroup { get; set; }
+        public bool? Ins3CoPay { get; set; }
+        public string Ins3NotPrimary { get; set; }
+        public string Ins3PrimaryName { get; set; }
+        public string Ins3Address { get; set; }
+        public string Ins3City { get; set; }
+        public string Ins3State { get; set; }
+        public int Ins3Zipcode { get; set; }
+        public string Ins3Phone { get; set; }
+        public DateTime Ins3Birthday { get; set; }
+        public string Ins3Sex { get; set; }
+        public string Ins3Employer { get; set; }
+        public string Ins3Relationship { get; set; }
+        public DateTime? Ins3SignatureDate { get; set; }
+        public string Ins3Ssn { get; set; }
+        public string GuarantorName { get; set; }
+        public string GuarantorAddress1 { get; set; }
+        public string GuarantorAddress2 { get; set; }
+        public string GuarantorCity { get; set; }
+        public string GuarantorState { get; set; }
+        public string GuarantorZip { get; set; }
+        public string GuarantorHomePh { get; set; }
+        public string GuarantorWorkPh { get; set; }
+        public string PatientSex { get; set; }
+        public DateTime TodaysDate { get; set; }
+        public string LastExamDate { get; set; }
+        public string LastVisitDate { get; set; }
+        public string FirstLastSuffix { get; set; }
+        public string Insurance4 { get; set; }
+        public string Insurance5 { get; set; }
+        public string Insurance6 { get; set; }
+        public string MedicationsFullList { get; set; }
+        public string AllergiesSummary { get; set; }
+        public string MedicationsSummary { get; set; }
+        public string Ins4Id { get; set; }
+        public string Ins4PolicyGroup { get; set; }
+        public bool? Ins4CoPay { get; set; }
+        public string Ins4NotPrimary { get; set; }
+        public string Ins4PrimaryName { get; set; }
+        public string Ins4Address { get; set; }
+        public string Ins4City { get; set; }
+        public string Ins4State { get; set; }
+        public int Ins4Zipcode { get; set; }
+        public string Ins4Phone { get; set; }
+        public DateTime Ins4Birthday { get; set; }
+        public string Ins4Sex { get; set; }
+        public string Ins4Employer { get; set; }
+        public string Ins4Relationship { get; set; }
+        public string Ins4SignatureDate { get; set; }
+        public string Ins4Ssn { get; set; }
+        public string Ins5Id { get; set; }
+        public string Ins5PolicyGroup { get; set; }
+        public string Ins5CoPay { get; set; }
+        public string Ins5NotPrimary { get; set; }
+        public string Ins5PrimaryName { get; set; }
+        public string Ins5Address { get; set; }
+        public string Ins5City { get; set; }
+        public string Ins5State { get; set; }
+        public int Ins5Zipcode { get; set; }
+        public string Ins5Phone { get; set; }
+        public DateTime Ins5Birthday { get; set; }
+        public string Ins5Sex { get; set; }
+        public string Ins5Employer { get; set; }
+        public string Ins5Relationship { get; set; }
+        public string Ins5SignatureDate { get; set; }
+        public string Ins5Ssn { get; set; }
+        public string Ins6Id { get; set; }
+        public string Ins6PolicyGroup { get; set; }
+        public string Ins6CoPay { get; set; }
+        public string Ins6NotPrimary { get; set; }
+        public string Ins6PrimaryName { get; set; }
+        public string Ins6Address { get; set; }
+        public string Ins6City { get; set; }
+        public string Ins6State { get; set; }
+        public int Ins6Zipcode { get; set; }
+        public string Ins6Phone { get; set; }
+        public DateTime Ins6Birthday { get; set; }
+        public string Ins6Sex { get; set; }
+        public string Ins6Employer { get; set; }
+        public string Ins6Relationship { get; set; }
+        public string Ins6SignatureDate { get; set; }
+        public string Ins6Ssn { get; set; }
+        public string InsNotes { get; set; }
+        public string HeOrShe { get; set; }
+        public string HisOrHer { get; set; }
+        public string PrimaryCareDoctor { get; set; }
+        public string PrimRefAddress { get; set; }
+        public string PrimRefPhone { get; set; }
+        public string PrimRefFax { get; set; }
+        public string PrimRefEmail { get; set; }
+        public string PrimRefNpi { get; set; }
+        public string PrimRefNotes { get; set; }
+        public string PortalUsername { get; set; }
+        public string PortalPassword { get; set; }
+        public string HeOrSheCap { get; set; }
+        public string HisOrHerCap { get; set; }
+        public string LastApptType { get; set; }
+        public string HimOrHer { get; set; }
+        public string HimOrHerCap { get; set; }
+        public string ProRefNamePrinted { get; set; }
+        public string ProRefNamePrinted2 { get; set; }
+        public string ProRefCategory { get; set; }
+        public string ProRefNamePrefix { get; set; }
+        public string ProRefNameFirst { get; set; }
+        public string ProRefNameMiddle { get; set; }
+        public string ProRefNameLast { get; set; }
+        public string ProRefNameSuffix { get; set; }
+        public string PrimCareNamePrinted { get; set; }
+        public string PrimCareNamePrinted2 { get; set; }
+        public string PrimCareCategory { get; set; }
+        public string PrimCareNamePrefix { get; set; }
+        public string PrimCareNameFirst { get; set; }
+        public string PrimCareNameMiddle { get; set; }
+        public string PrimCareNameLast { get; set; }
+        public string PrimCareNameSuffix { get; set; }
+        public string GuarantorSex { get; set; }
+        public string LastProvider { get; set; }
+        public string TodaysProvider { get; set; }
+        public string GuarantorBirthday { get; set; }
+        public string GuarantorSsn { get; set; }
+        public string SsnPartiallyMasked { get; set; }
+        public string GuarantorSsnPartiallyMasked { get; set; }
+        public string Ins1Abbrev { get; set; }
+        public string Ins2Abbrev { get; set; }
+        public string Ins3Abbrev { get; set; }
+        public string Ins4Abbrev { get; set; }
+        public string Ins5Abbrev { get; set; }
+        public string Ins6Abbrev { get; set; }
+        public string DriverLisc { get; set; }
+        public string AlottmentIns1 { get; set; }
+        public string AlottmentIns1Eff { get; set; }
+        public string AlottmentIns1Exp { get; set; }
+        public string DiagnosisCodes { get; set; }
+        public string CompanyName { get; set; }
+        public string CompayPhone { get; set; }
+        public string CompanyLogo { get; set; }
     }
 }
